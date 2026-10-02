@@ -38,6 +38,3 @@ O Jornada+ é uma plataforma web desenvolvida para simplificar e automatizar o c
 
 **Mickaelly da Silva Costa**
 
-Projeto acadêmico e de portfólio para a disciplina de Tecnologia e Educação.
-
-Data de atualização: 02/10/2026
