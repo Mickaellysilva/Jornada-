@@ -10,20 +10,12 @@ O Jornada+ é uma plataforma web desenvolvida para simplificar e automatizar o c
 - **O Problema:** Pequenas empresas sofrem com o registro manual do ponto (papel ou planilhas), resultando em falhas na apuração de horas, retrabalho para a gestão e falta de transparência para os colaboradores.
 - **A Solução:** O Jornada+ oferece um ambiente acessível onde funcionários realizam suas marcações e acompanham seu histórico, enquanto gestores administram jornadas, corrigem divergências e geram relatórios consolidados.
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 813559db8f517d2b599c5445b14f37a9c096afb3
 
 ## Perfis de Acesso
 
 - **Gestor / Gerente:** Cadastro de equipe, configuração de jornadas de trabalho, tratamento de marcações (ajustes manuais), consulta de atrasos/horas extras e exportação de relatórios.
 - **Funcionário:** Registro diário de marcações (Entrada, Almoço e Saída), alteração de senha e consulta do espelho de ponto individual.
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 813559db8f517d2b599c5445b14f37a9c096afb3
 
 ## Documentação do Projeto
 
