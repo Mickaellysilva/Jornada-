@@ -112,3 +112,126 @@ O sistema é direcionado, primariamente, a dois perfis de usuários:
 |---|---|
 | RNF21 | O sistema deve possuir testes automatizados cobrindo, no mínimo, as regras de cálculo de atrasos e horas extras (RF07 a RF09). |
 | RNF22 | O sistema deve registrar logs de erro e de operação em formato estruturado, para facilitar o diagnóstico de
+
+
+# Histórias de Usuário — Jornada+
+
+**Perfis:** Funcionário, Gestor e Visitante (quem ainda não tem conta e usa o formulário público).
+**Prioridade:** herdada do SRS (Alta, Média ou Baixa).
+
+---
+
+## Épico 1: Acesso e conta
+
+### US01 — Entrar no sistema (RF01, RF04, RF05) · Alta
+**Como** funcionário ou gestor, **quero** entrar no sistema com login e senha, **para** acessar apenas as funcionalidades do meu perfil.
+
+**Critérios de aceitação:**
+- Com credenciais válidas, o usuário acessa a tela do seu perfil (Funcionário ou Gestor).
+- Com credenciais inválidas, o sistema exibe mensagem de erro sem indicar qual campo está errado.
+- Após várias tentativas malsucedidas seguidas, o login é bloqueado temporariamente (RNF07).
+
+### US02 — Trocar e recuperar a senha (RF03) · Média
+**Como** funcionário, **quero** trocar a senha provisória e redefinir a senha por e-mail, **para** manter minha conta segura e não perder o acesso.
+
+**Critérios de aceitação:**
+- No primeiro acesso, o sistema pede a troca da senha provisória.
+- Ao solicitar a redefinição, o sistema envia um link ao e-mail cadastrado.
+- A nova senha é armazenada com hash (RNF01).
+
+### US03 — Pedir cadastro ou tirar dúvidas (RF10) · Média
+**Como** visitante, **quero** enviar um formulário com meu e-mail e o motivo do contato, **para** solicitar cadastro ou esclarecer dúvidas sem precisar de conta.
+
+**Critérios de aceitação:**
+- O formulário exige e-mail válido e motivo preenchido.
+- A solicitação é encaminhada à área administrativa.
+- O visitante vê uma confirmação de envio.
+
+---
+
+## Épico 2: Registro de ponto (Funcionário)
+
+### US04 — Registrar o ponto (RF12) · Alta
+**Como** funcionário, **quero** registrar minhas marcações (Entrada, Saída para Almoço, Retorno do Almoço e Saída), **para** que minha jornada fique documentada sem planilhas ou papel.
+
+**Critérios de aceitação:**
+- O sistema grava data e hora exatas, usando o relógio do servidor (RNF09).
+- As marcações seguem a sequência do dia, e o sistema impede uma marcação fora de ordem.
+- Após registrar, o funcionário vê uma confirmação com o horário gravado.
+- O registro é concluído em até 2 segundos (RNF13).
+
+### US05 — Consultar meu espelho de ponto (RF13) · Alta
+**Como** funcionário, **quero** ver o espelho do meu ponto do mês atual e dos meses anteriores, **para** conferir meus horários e meu saldo de horas.
+
+**Critérios de aceitação:**
+- O espelho mostra os horários registrados por dia e o saldo de horas.
+- É possível escolher o mês a consultar.
+- O funcionário só vê o seu próprio espelho.
+- Marcações ajustadas pelo gestor aparecem identificadas como alteradas.
+
+---
+
+## Épico 3: Gestão de funcionários (Gestor)
+
+### US06 — Cadastrar e excluir funcionários (RF02) · Alta
+**Como** gestor, **quero** cadastrar e excluir funcionários, **para** manter a lista da equipe atualizada.
+
+**Critérios de aceitação:**
+- O cadastro exige nome completo, e-mail e jornada vinculada.
+- O sistema gera uma senha provisória para o novo funcionário.
+- Antes de excluir, o sistema pede confirmação.
+- A exclusão não apaga as marcações de ponto já registradas (RNF10, RNF12). *Confirme essa regra, porque pode pesar na decisão do SRS.*
+
+### US07 — Buscar e visualizar funcionários (RF06) · Média
+**Como** gestor, **quero** buscar funcionários pelo nome e ver suas informações resumidas, **para** achar rapidamente quem preciso acompanhar.
+
+**Critérios de aceitação:**
+- A busca funciona por parte do nome.
+- A lista mostra nome completo, total de horas trabalhadas, horas excedidas e atrasos.
+
+### US08 — Configurar jornadas de trabalho (RF16) · Média
+**Como** gestor, **quero** criar jornadas (horários, intervalo de almoço e dias úteis) e vinculá-las aos funcionários, **para** que o sistema calcule atrasos e horas extras corretamente.
+
+**Critérios de aceitação:**
+- Uma jornada define horário de entrada e saída, duração do almoço e dias da semana.
+- É possível ter várias jornadas diferentes cadastradas.
+- Cada funcionário fica vinculado a uma jornada.
+
+---
+
+## Épico 4: Acompanhamento e tratamento (Gestor)
+
+### US09 — Ver atrasos de um funcionário (RF07, RF09) · Alta
+**Como** gestor, **quero** ver quanto tempo e em quais dias um funcionário se atrasou, **para** acompanhar a pontualidade da equipe.
+
+**Critérios de aceitação:**
+- O atraso é contabilizado a partir de 1 minuto após o horário definido na jornada (RF07).
+- Ao abrir um funcionário, o gestor vê o total de atraso e os dias em que ocorreram.
+
+### US10 — Ver horas extras de um funcionário (RF08) · Média
+**Como** gestor, **quero** ver quantas horas extras um funcionário fez no mês e em quais dias, **para** controlar a carga de trabalho e o pagamento.
+
+**Critérios de aceitação:**
+- O sistema mostra o total mensal de horas extras e os dias de trabalho extra.
+- O cálculo considera a jornada vinculada ao funcionário.
+
+### US11 — Corrigir marcações de ponto (RF14) · Alta
+**Como** gestor, **quero** inserir marcações manuais, editar horários e justificar faltas, **para** corrigir esquecimentos do funcionário.
+
+**Critérios de aceitação:**
+- Todo ajuste exige uma justificativa.
+- O registro original é preservado, e o ajuste gera um novo registro com autor e data (RNF10).
+- A marcação alterada aparece identificada como "ajustada manualmente" no espelho.
+
+### US12 — Conferir o local da marcação (RF11) · Média
+**Como** gestor, **quero** ver se o funcionário registrou o ponto no local de trabalho, **para** validar a presença.
+
+**Critérios de aceitação:**
+- Cada marcação mostra se foi feita dentro ou fora do local definido.
+- A localização só é coletada no momento da marcação e com consentimento do funcionário (RNF11).
+
+---
+
+## Épico 5: Relatórios (Gestor)
+
+### US13 — Gerar o espelho de ponto
