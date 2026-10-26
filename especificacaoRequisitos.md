@@ -113,7 +113,6 @@ O sistema é direcionado, primariamente, a dois perfis de usuários:
 | RNF21 | O sistema deve possuir testes automatizados cobrindo, no mínimo, as regras de cálculo de atrasos e horas extras (RF07 a RF09). |
 | RNF22 | O sistema deve registrar logs de erro e de operação em formato estruturado, para facilitar o diagnóstico de
 
-
 # Histórias de Usuário — Jornada+
 
 **Perfis:** Funcionário, Gestor e Visitante (quem ainda não tem conta e usa o formulário público).
@@ -234,4 +233,10 @@ O sistema é direcionado, primariamente, a dois perfis de usuários:
 
 ## Épico 5: Relatórios (Gestor)
 
-### US13 — Gerar o espelho de ponto
+### US13 — Gerar o espelho de ponto mensal (RF15) · Baixa
+**Como** gestor, **quero** gerar e exportar em PDF ou Excel o espelho de ponto mensal de um ou mais funcionários, **para** arquivar, conferir ou enviar à contabilidade.
+
+**Critérios de aceitação:**
+- O gestor escolhe o mês e os funcionários.
+- A exportação está disponível em PDF e em Excel.
+- Um relatório de até 50 funcionários é gerado em até 10 segundos (RNF14).
